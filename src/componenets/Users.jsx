@@ -12,19 +12,25 @@ const Users = () => {
 
     const fetchUsers = ()=> {return axios.get("https://jsonplaceholder.typicode.com/users");}
    
-    const {data,isLoading,isError,error}=useQuery({queryKey: ['repoData'],queryFn:fetchUsers , 
+    const {data,isLoading,isError,error,refetch}=useQuery({queryKey: ['repoData'],queryFn:fetchUsers , 
     // gcTime:20000 ms
    // staleTime:120 * 1000
    //refetchOnMount: false 
    //refetchOnWindowFocus:false
-   refetchInterval: 2 * 100 
+  // refetchInterval: 2 * 100 
+  enabled :false
+  
     });
-    if(isLoading) return <h1>Loading ...</h1>
-    if(isError) return <h3>Somthing went wrong : {error.message}</h3>
+   // if(isLoading) return <h1>Loading ...</h1>
+    //if(isError) return <h3>Somthing went wrong : {error.message}</h3>
   return (
     <div>
+        <button onClick={refetch}>ReFetch Data</button>
+        {
+            isLoading && refetch && <h1>Loading...</h1>
+        }
      {
-        data.data.map(i => <h3 key={i.id}>{i.name}</h3>)
+        data?.data.map(i => <h3 key={i.id}>{i.name}</h3>)
      }
     </div>
   )
