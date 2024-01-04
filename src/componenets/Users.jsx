@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
-const HomePage = () => {
+const Users = () => {
 
     // const fetchUsers= async ()=>{
     //     const res= await fetch("https://jsonplaceholder.typicode.com/users");
@@ -12,7 +12,7 @@ const HomePage = () => {
 
     const fetchUsers = ()=> {return axios.get("https://jsonplaceholder.typicode.com/users");}
    
-    const {data,isLoading,isError,error}=useQuery({queryKey: ['repoData'],queryFn:fetchUsers});
+    const {data,isLoading,isError,error}=useQuery({queryKey: ['repoData'],queryFn:fetchUsers ,  gcTime:2000});
     if(isLoading) return <h1>Loading ...</h1>
     if(isError) return <h3>Somthing went wrong : {error.message}</h3>
   return (
@@ -24,4 +24,4 @@ const HomePage = () => {
   )
 }
 
-export default HomePage
+export default Users
