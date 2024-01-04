@@ -14,7 +14,8 @@ const Users = () => {
    
     const {data,isLoading,isError,error}=useQuery({queryKey: ['repoData'],queryFn:fetchUsers , 
     // gcTime:20000 ms
-    staleTime:120 * 1000
+   // staleTime:120 * 1000
+   refetchOnMount: false 
     });
     if(isLoading) return <h1>Loading ...</h1>
     if(isError) return <h3>Somthing went wrong : {error.message}</h3>
