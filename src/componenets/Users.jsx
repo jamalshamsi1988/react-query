@@ -11,6 +11,7 @@ const Users = () => {
     // }
 
     const fetchUsers = ()=> {return axios.get("https://jsonplaceholder.typicode.com/users");}
+    
    
     const {data,isLoading,isError,error,refetch}=useQuery({queryKey: ['repoData'],queryFn:fetchUsers , 
     // gcTime:20000 ms
@@ -18,8 +19,9 @@ const Users = () => {
    //refetchOnMount: false 
    //refetchOnWindowFocus:false
   // refetchInterval: 2 * 100 
-  enabled :false
-  
+  enabled :false,
+                            //all useQuery
+  //https://tanstack.com/query/latest/docs/react/reference/useQuery
     });
    // if(isLoading) return <h1>Loading ...</h1>
     //if(isError) return <h3>Somthing went wrong : {error.message}</h3>
