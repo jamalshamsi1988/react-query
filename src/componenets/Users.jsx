@@ -13,7 +13,7 @@ const Users = () => {
     // }
  
    
-    const {data,isLoading,isError,error,refetch}=useQuery(useUserData)
+    const {data,isLoading,isError,error,refetch}=useQuery(useUserData())
    // if(isLoading) return <h1>Loading ...</h1>
     //if(isError) return <h3>Somthing went wrong : {error.message}</h3>
   return (
