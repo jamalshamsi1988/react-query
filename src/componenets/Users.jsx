@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Users = () => {
 
@@ -13,7 +14,7 @@ const Users = () => {
     const fetchUsers = ()=> {return axios.get("https://jsonplaceholder.typicode.com/users");}
     
    
-    const {data,isLoading,isError,error,refetch}=useQuery({queryKey: ['repoData'],queryFn:fetchUsers , 
+    const {data,isLoading,isError,error,refetch}=useQuery({queryKey: ['Users'],queryFn:fetchUsers , 
     // gcTime:20000 ms
    // staleTime:120 * 1000
    //refetchOnMount: false 
@@ -32,7 +33,7 @@ const Users = () => {
             isLoading && refetch && <h1>Loading...</h1>
         }
      {
-        data?.data.map(i => <h3 key={i.id}>{i.name}</h3>)
+        data?.data.map(i => <h3 key={i.id}><Link to={`/users/${i.id}`}>{i.name}</Link></h3>)
      }
     </div>
   )
